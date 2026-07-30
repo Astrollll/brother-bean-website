@@ -1,0 +1,130 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  hideSuffix?: boolean;
+}
+
+const { title = "Brother Bean Coffee House", description = "Handcrafted coffee in the heart of Cavite", hideSuffix = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/brother-bean-logo.jpg" />
+    <title>{hideSuffix ? title : `${title} | Brother Bean Coffee House`}</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+  function init() {
+    const progress = document.getElementById("scrollProgress");
+    if (progress) {
+      let ticking = false;
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
+            progress.style.transform = `scaleX(${scrollPercent})`;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
+
+    document.querySelectorAll(".btn-primary.magnetic, .btn-outline.magnetic").forEach((btn) => {
+      btn.addEventListener("mousemove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
+      btn.addEventListener("mouseleave", () => {
+        btn.style.transform = "";
+      });
+    });
+
+    document.querySelectorAll(".tilt-card").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        const shine = card.querySelector(".tilt-card-shine");
+        if (shine) {
+          shine.style.background = `radial-gradient(circle at ${(x / rect.width) * 100}% ${(y / rect.height) * 100}%, rgba(255,255,255,0.1) 0%, transparent 60%)`;
+        }
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -50px 0px" });
+
+    document.querySelectorAll(
+      ".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .reveal-clip"
+    ).forEach((el) => observer.observe(el));
+
+    document.querySelectorAll("[data-count-to]").forEach((el) => {
+      const target = parseInt(el.dataset.countTo || "0");
+      const duration = parseInt(el.dataset.countDuration || "2000");
+      const suffix = el.dataset.countSuffix || "";
+      const start = performance.now();
+
+      function update(now) {
+        const elapsed = now - start;
+        const p = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const current = Math.round(eased * target);
+        el.textContent = current.toLocaleString() + suffix;
+        if (p < 1) requestAnimationFrame(update);
+      }
+
+      const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            requestAnimationFrame(update);
+            countObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      countObserver.observe(el);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+</script>

@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MenuCard from "../components/MenuCard.astro";
+
+const menuItems = [
+  { name: "Spanish Latte", price: "₱150", description: "Sweetened condensed milk meets double espresso", category: "Coffee" },
+  { name: "Caramel Macchiato", price: "₱160", description: "Layered vanilla latte with caramel drizzle", category: "Coffee" },
+  { name: "Cafe Americano", price: "₱110", description: "Smooth bold espresso with hot water", category: "Coffee" },
+  { name: "Cappuccino", price: "₱140", description: "Classic espresso with steamed milk foam", category: "Coffee" },
+  { name: "Mocha Latte", price: "₱160", description: "Espresso with rich chocolate and steamed milk", category: "Coffee" },
+  { name: "Matcha Latte", price: "₱150", description: "Ceremonial grade matcha whisked with milk", category: "Non-Coffee" },
+  { name: "Strawberry Milk", price: "₱130", description: "Fresh strawberry puree with creamy milk", category: "Non-Coffee" },
+  { name: "Chocolate Dream", price: "₱140", description: "Rich Belgian chocolate blended with milk", category: "Non-Coffee" },
+  { name: "Iced Tea", price: "₱100", description: "House-brewed lemon iced tea", category: "Non-Coffee" },
+  { name: "Cookies & Cream", price: "₱150", description: "Blended cookies with creamy milk base", category: "Non-Coffee" },
+  { name: "Croissant", price: "₱90", description: "Buttery, flaky classic French pastry", category: "Pastries" },
+  { name: "Ensaymada", price: "₱70", description: "Soft Filipino brioche with butter and sugar", category: "Pastries" },
+  { name: "Cheese Bread", price: "₱60", description: "Soft bread with creamy cheese filling", category: "Pastries" },
+  { name: "Brownie", price: "₱80", description: "Fudgy chocolate brownie, baked fresh daily", category: "Pastries" },
+  { name: "Sopas", price: "₱85", description: "Creamy Filipino chicken noodle soup", category: "Food" },
+  { name: "Carbonara", price: "₱120", description: "Creamy pasta with bacon and parmesan", category: "Food" },
+];
+
+const categories = [...new Set(menuItems.map((item) => item.category))];
+let globalIndex = 0;
+---
+
+<BaseLayout title="Menu" hideSuffix description="Browse our menu of specialty coffee, non-coffee drinks, fresh pastries, and food at Brother Bean Coffee House in Cavite.">
+  <div class="h-16 lg:h-20"></div>
+  <section class="py-20 lg:py-28 relative overflow-hidden">
+    <div class="absolute inset-0 bg-mesh"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-header reveal">
+        <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]">Savor Every Sip</span>
+        <h1 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-4">Our Menu</h1>
+        <div class="section-divider"></div>
+        <p class="text-gray-500 max-w-lg mx-auto">Every drink and pastry made with care. Here's what we're serving.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-3 justify-center mb-14">
+        {categories.map((cat, i) => (
+          <span class="reveal px-5 py-2.5 rounded-full text-sm font-medium bg-white border border-brand-cream-dark text-brand-brown hover:border-brand-gold/40 hover:bg-brand-gold/5 hover:scale-105 transition-all duration-300 cursor-default" style={`animation-delay: ${i * 0.1}s`}>
+            {cat}
+          </span>
+        ))}
+      </div>
+
+      {categories.map((cat, catIdx) => (
+        <div class="mb-14 reveal" style={`animation-delay: ${catIdx * 0.12}s`} transition:name={`menu-category-${cat}`}>
+          <h2 class="font-serif text-2xl font-bold text-brand-brown mb-6 flex items-center gap-3">
+            <span class="w-8 h-1 bg-gradient-to-r from-brand-gold to-brand-gold-light rounded-full"></span>
+            {cat}
+          </h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {menuItems.filter((item) => item.category === cat).map((item) => {
+              const idx = globalIndex;
+              globalIndex++;
+              return <MenuCard name={item.name} price={item.price} description={item.description} category={item.category} index={idx} />;
+            })}
+          </div>
+        </div>
+      ))}
+
+      <div class="mt-16 reveal">
+        <div class="relative p-10 rounded-2xl bg-gradient-to-br from-brand-cream to-brand-cream-dark border border-brand-cream-dark text-center overflow-hidden">
+          <div class="absolute top-0 right-0 w-40 h-40 bg-brand-gold/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
+          <div class="relative">
+            <p class="text-brand-brown font-semibold text-lg mb-2">Have questions about our menu?</p>
+            <p class="text-gray-500 text-sm mb-4">We'd love to help you find your new favorite drink.</p>
+            <a href="/contact" class="btn-primary inline-flex text-sm magnetic">
+              Contact Us
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

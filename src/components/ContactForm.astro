@@ -1,0 +1,62 @@
+---
+const FORMSPREE_ID = "mjgnzlpe";
+---
+
+<form id="contact-form" class="max-w-lg mx-auto space-y-5">
+  <div>
+    <label for="name" class="block text-sm font-medium text-gray-600 mb-1.5">Name</label>
+    <input type="text" name="name" id="name" required placeholder="Your name" data-fs-field class="w-full px-5 py-3.5 rounded-xl border border-brand-cream-dark bg-white/80 focus:bg-white focus:ring-2 focus:ring-brand-gold/30 focus:border-brand-gold outline-none transition-all duration-300 placeholder:text-gray-300 hover:border-brand-gold/30" />
+  </div>
+  <div>
+    <label for="email" class="block text-sm font-medium text-gray-600 mb-1.5">Email</label>
+    <input type="email" name="email" id="email" required placeholder="your@email.com" data-fs-field class="w-full px-5 py-3.5 rounded-xl border border-brand-cream-dark bg-white/80 focus:bg-white focus:ring-2 focus:ring-brand-gold/30 focus:border-brand-gold outline-none transition-all duration-300 placeholder:text-gray-300 hover:border-brand-gold/30" />
+  </div>
+  <div>
+    <label for="message" class="block text-sm font-medium text-gray-600 mb-1.5">Message</label>
+    <textarea name="message" id="message" rows="5" required placeholder="Tell us what's on your mind..." data-fs-field class="w-full px-5 py-3.5 rounded-xl border border-brand-cream-dark bg-white/80 focus:bg-white focus:ring-2 focus:ring-brand-gold/30 focus:border-brand-gold outline-none transition-all duration-300 placeholder:text-gray-300 resize-none hover:border-brand-gold/30"></textarea>
+  </div>
+  <button type="submit" data-fs-submit-btn class="btn-primary w-full justify-center text-base py-3.5 magnetic">
+    Send Message
+  </button>
+</form>
+
+<!-- Success popup -->
+<div id="fs-success-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-500">
+  <div class="bg-white rounded-3xl p-10 max-w-sm mx-4 text-center shadow-2xl scale-95 transition-transform duration-500">
+    <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-gradient-to-br from-brand-gold to-brand-gold-dark flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+    <h3 class="font-serif text-2xl font-bold text-brand-brown mb-2">Message Sent!</h3>
+    <p class="text-gray-500 mb-6">Thanks for reaching out. We'll get back to you soon.</p>
+    <button id="fs-close-btn" class="px-6 py-2.5 rounded-xl bg-brand-cream text-brand-brown font-medium hover:bg-brand-gold hover:text-white transition-all duration-300">
+      Got it
+    </button>
+  </div>
+</div>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', {
+    formElement: '#contact-form',
+    formId: 'mjgnzlpe',
+    onSuccess: function () {
+      document.getElementById('contact-form').reset();
+      document.getElementById('fs-success-overlay').classList.remove('opacity-0', 'pointer-events-none');
+      document.getElementById('fs-success-overlay').querySelector('div:first-child').classList.remove('scale-95');
+    },
+    onError: function () {
+      alert('Something went wrong. Please try again.');
+    }
+  });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+<script>
+  document.addEventListener('click', function (e) {
+    if (e.target.id === 'fs-close-btn' || e.target.id === 'fs-success-overlay') {
+      const overlay = document.getElementById('fs-success-overlay');
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+      overlay.querySelector('div:first-child').classList.add('scale-95');
+    }
+  });
+</script>

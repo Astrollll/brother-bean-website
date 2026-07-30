@@ -1,0 +1,35 @@
+---
+export interface Props {
+  name: string;
+  price: string;
+  description?: string;
+  category: string;
+  index?: number;
+}
+
+const { name, price, description, category, index = 0 } = Astro.props;
+
+const categoryColors: Record<string, string> = {
+  Coffee: "from-amber-800/20 to-amber-600/10 border-amber-800/20",
+  "Non-Coffee": "from-emerald-800/20 to-emerald-600/10 border-emerald-800/20",
+  Pastries: "from-orange-800/20 to-orange-600/10 border-orange-800/20",
+  Food: "from-red-800/20 to-red-600/10 border-red-800/20",
+};
+const categoryBorder = categoryColors[category] || "from-brand-brown/10 to-brand-brown/5";
+---
+
+<div class="card-lift group relative bg-white rounded-2xl p-6 border border-brand-cream-dark overflow-hidden tilt-card" style={`animation-delay: ${index * 0.05}s`}>
+  <div class="tilt-card-shine"></div>
+  <div class={`absolute inset-0 bg-gradient-to-br ${categoryBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+  <div class="relative tilt-card-inner">
+    <div class="flex items-start justify-between mb-3">
+      <h3 class="font-serif font-bold text-lg text-brand-brown group-hover:text-brand-brown-darker transition-colors duration-300">{name}</h3>
+      <span class="font-bold text-brand-gold whitespace-nowrap ml-3 text-lg">{price}</span>
+    </div>
+    <div class="flex items-center gap-2 mb-3">
+      <span class={`inline-block w-2 h-2 rounded-full ${category === "Coffee" ? "bg-amber-500" : category === "Non-Coffee" ? "bg-emerald-500" : category === "Pastries" ? "bg-orange-500" : "bg-red-500"} animate-pulse-soft`}></span>
+      <span class="text-xs font-medium text-gray-500 uppercase tracking-wider">{category}</span>
+    </div>
+    {description && <p class="text-sm text-gray-500 leading-relaxed">{description}</p>}
+  </div>
+</div>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About" hideSuffix description="Learn the story behind Brother Bean Coffee House — our passion for coffee, community, and Cavite.">
+  <div class="h-16 lg:h-20"></div>
+  <section class="py-20 lg:py-28 relative overflow-hidden">
+    <div class="absolute inset-0 bg-mesh"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-header reveal-rotate">
+        <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]">Who We Are</span>
+        <h1 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-4">Our Story</h1>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="reveal-scale reveal-delay-1 mb-16 relative">
+        <div class="aspect-video rounded-2xl bg-gradient-to-br from-brand-brown via-brand-brown-dark to-brand-brown-darker flex items-center justify-center relative overflow-hidden shadow-2xl">
+          <div class="absolute inset-0 bg-noise opacity-[0.08]"></div>
+          <div class="absolute inset-0 opacity-20 bg-mesh"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent animate-ken-burns"></div>
+          <svg viewBox="0 0 200 200" class="w-32 h-32 text-brand-gold/30 animate-float" style="animation-duration: 6s">
+            <rect x="40" y="70" width="120" height="100" rx="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="30" y="60" width="140" height="20" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M150 85 Q170 95 170 110 Q170 125 150 130" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="60" y1="45" x2="60" y2="55" stroke="currentColor" stroke-width="1"/>
+            <line x1="80" y1="40" x2="80" y2="55" stroke="currentColor" stroke-width="1"/>
+            <line x1="100" y1="38" x2="100" y2="55" stroke="currentColor" stroke-width="1"/>
+            <line x1="120" y1="42" x2="120" y2="55" stroke="currentColor" stroke-width="1"/>
+          </svg>
+          <div class="absolute bottom-4 left-4 right-4 flex justify-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brand-gold/40 animate-pulse-soft"></span>
+            <span class="w-2 h-2 rounded-full bg-brand-gold/20"></span>
+            <span class="w-2 h-2 rounded-full bg-brand-gold/20"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6 text-gray-500 leading-relaxed">
+        <div class="reveal-left reveal-delay-1 p-6 rounded-xl bg-white/50 border border-brand-cream-dark hover:border-brand-gold/20 transition-all duration-500">
+          <p class="text-lg">Brother Bean Coffee House started as a dream shared by a group of friends who believed that coffee is more than just a drink — it's an experience. It's the warmth of the mug on a rainy morning, the laughter shared over a table, and the quiet moments of reflection between sips.</p>
+        </div>
+        <div class="reveal-right reveal-delay-2 p-6 rounded-xl bg-white/50 border border-brand-cream-dark hover:border-brand-gold/20 transition-all duration-500">
+          <p>Located in the heart of Cavite, we set out to build a space where the community could gather, work, study, and connect. Every corner of Brother Bean is designed to feel like a second home — familiar, comforting, and inviting.</p>
+        </div>
+        <div class="reveal-left reveal-delay-3 p-6 rounded-xl bg-white/50 border border-brand-cream-dark hover:border-brand-gold/20 transition-all duration-500">
+          <p>Our beans are carefully sourced and roasted to highlight their natural flavors. From the bold kick of our Americano to the creamy sweetness of our Spanish Latte, every drink is made to order with precision and care.</p>
+        </div>
+        <div class="reveal-right reveal-delay-4 p-6 rounded-xl bg-white/50 border border-brand-cream-dark hover:border-brand-gold/20 transition-all duration-500">
+          <p>We also take pride in our food offerings — from buttery croissants to hearty Filipino sopas, there's something for every craving.</p>
+        </div>
+      </div>
+
+      <div class="reveal-scale reveal-delay-6 mt-14 p-10 rounded-2xl bg-gradient-to-br from-brand-gold/10 to-brand-gold/5 border border-brand-gold/20 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-gold/40 to-transparent"></div>
+        <svg class="w-10 h-10 text-brand-gold/30 mx-auto mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        <p class="font-serif text-2xl lg:text-3xl text-brand-brown font-semibold italic">
+          "Come as a customer, leave as family."
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

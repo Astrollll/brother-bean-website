@@ -1,0 +1,63 @@
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-2xl border-b border-white/20 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <a href="/" class="flex items-center gap-3 group">
+        <img src="/brother-bean-logo.jpg" alt="Brother Bean" class="w-9 h-9 rounded-lg object-cover transition-transform duration-300 group-hover:scale-110" />
+        <span class="text-lg lg:text-xl font-serif font-bold bg-gradient-to-r from-brand-brown to-brand-brown-light bg-clip-text text-transparent">Brother Bean</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-1">
+        <a href="/" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-brown transition-all duration-200 rounded-lg hover:bg-brand-cream hover:scale-105">Home</a>
+        <a href="/menu" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-brown transition-all duration-200 rounded-lg hover:bg-brand-cream hover:scale-105">Menu</a>
+        <a href="/about" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-brown transition-all duration-200 rounded-lg hover:bg-brand-cream hover:scale-105">About</a>
+        <a href="/gallery" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-brown transition-all duration-200 rounded-lg hover:bg-brand-cream hover:scale-105">Gallery</a>
+        <a href="/events" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-brown transition-all duration-200 rounded-lg hover:bg-brand-cream hover:scale-105">Events</a>
+        <a href="/location" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-brown transition-all duration-200 rounded-lg hover:bg-brand-cream hover:scale-105">Location</a>
+        <a href="/contact" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-brown transition-all duration-200 rounded-lg hover:bg-brand-cream hover:scale-105">Contact</a>
+        <a href="/blog" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-brown transition-all duration-200 rounded-lg hover:bg-brand-cream hover:scale-105">Blog</a>
+      </div>
+
+      <button id="menu-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-brand-brown hover:bg-brand-cream transition-all duration-200" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="menu-icon-open"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="menu-icon-close" class="hidden"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div id="mobile-menu" class="hidden fixed top-16 left-0 right-0 bottom-0 z-40 bg-white border-t-2 border-brand-cream-dark shadow-2xl animate-fade-in">
+  <div class="flex flex-col px-6 py-6 gap-1.5">
+    <a href="/" class="px-4 py-4 text-base font-semibold text-brand-brown hover:text-brand-brown-darker hover:bg-brand-cream rounded-xl transition-all duration-200 border border-transparent hover:border-brand-cream-dark">Home</a>
+    <a href="/menu" class="px-4 py-4 text-base font-semibold text-brand-brown hover:text-brand-brown-darker hover:bg-brand-cream rounded-xl transition-all duration-200 border border-transparent hover:border-brand-cream-dark">Menu</a>
+    <a href="/about" class="px-4 py-4 text-base font-semibold text-brand-brown hover:text-brand-brown-darker hover:bg-brand-cream rounded-xl transition-all duration-200 border border-transparent hover:border-brand-cream-dark">About</a>
+    <a href="/gallery" class="px-4 py-4 text-base font-semibold text-brand-brown hover:text-brand-brown-darker hover:bg-brand-cream rounded-xl transition-all duration-200 border border-transparent hover:border-brand-cream-dark">Gallery</a>
+    <a href="/events" class="px-4 py-4 text-base font-semibold text-brand-brown hover:text-brand-brown-darker hover:bg-brand-cream rounded-xl transition-all duration-200 border border-transparent hover:border-brand-cream-dark">Events</a>
+    <a href="/location" class="px-4 py-4 text-base font-semibold text-brand-brown hover:text-brand-brown-darker hover:bg-brand-cream rounded-xl transition-all duration-200 border border-transparent hover:border-brand-cream-dark">Location</a>
+    <a href="/contact" class="px-4 py-4 text-base font-semibold text-brand-brown hover:text-brand-brown-darker hover:bg-brand-cream rounded-xl transition-all duration-200 border border-transparent hover:border-brand-cream-dark">Contact</a>
+    <a href="/blog" class="px-4 py-4 text-base font-semibold text-brand-brown hover:text-brand-brown-darker hover:bg-brand-cream rounded-xl transition-all duration-200 border border-transparent hover:border-brand-cream-dark">Blog</a>
+  </div>
+</div>
+
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const iconOpen = document.getElementById("menu-icon-open");
+  const iconClose = document.getElementById("menu-icon-close");
+
+  menuBtn.addEventListener("click", () => {
+    const isOpen = !mobileMenu.classList.contains("hidden");
+    mobileMenu.classList.toggle("hidden");
+    iconOpen.classList.toggle("hidden");
+    iconClose.classList.toggle("hidden");
+    document.body.style.overflow = isOpen ? "" : "hidden";
+  });
+
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      iconOpen.classList.remove("hidden");
+      iconClose.classList.add("hidden");
+      document.body.style.overflow = "";
+    });
+  });
+</script>
