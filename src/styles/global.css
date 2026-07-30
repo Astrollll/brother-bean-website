@@ -299,6 +299,13 @@
   @apply bg-brand-brown/40;
 }
 
+.btn-primary,
+.btn-outline,
+.hero-text {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-left,
