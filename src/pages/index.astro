@@ -3,46 +3,121 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 ---
 
-<BaseLayout title="Home" hideSuffix description="Handcrafted coffee in Dasmariñas, Cavite. Visit Brother Bean Coffee House for specialty coffee, pastries, and warm conversations.">
+<BaseLayout
+  title="Home"
+  hideSuffix
+  description="Handcrafted coffee in Dasmariñas, Cavite. Visit Brother Bean Coffee House for specialty coffee, pastries, and warm conversations."
+>
   <Hero />
 
   <section class="py-24 lg:py-32 relative overflow-hidden">
     <div class="absolute inset-0 bg-mesh"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="section-header reveal">
-        <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]">What We Offer</span>
-        <h2 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-4">Why Brother Bean?</h2>
+        <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]"
+          >What We Offer</span
+        >
+        <h2 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-4">
+          Why Brother Bean?
+        </h2>
         <div class="section-divider"></div>
       </div>
       <div class="grid md:grid-cols-3 gap-8 lg:gap-10">
-        <div class="glass-card rounded-2xl p-8 lg:p-10 text-center card-lift reveal reveal-delay-1 tilt-card">
+        <div
+          class="glass-card rounded-2xl p-8 lg:p-10 text-center card-lift reveal reveal-delay-1 tilt-card"
+        >
           <div class="tilt-card-shine"></div>
           <div class="relative tilt-card-inner">
-            <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4A853" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+            <div
+              class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#D4A853"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M17 8h1a4 4 0 1 1 0 8h-1"></path><path
+                  d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path><line
+                  x1="6"
+                  x2="6"
+                  y1="2"
+                  y2="4"></line><line x1="10" x2="10" y1="2" y2="4"></line><line
+                  x1="14"
+                  x2="14"
+                  y1="2"
+                  y2="4"></line></svg
+              >
             </div>
             <h3 class="font-serif font-bold text-xl text-brand-brown mb-3">Specialty Coffee</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Single-origin beans, expertly roasted and brewed to perfection. Every cup tells a story from farm to table.</p>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Single-origin beans, expertly roasted and brewed to perfection. Every cup tells a
+              story from farm to table.
+            </p>
           </div>
         </div>
-        <div class="glass-card rounded-2xl p-8 lg:p-10 text-center card-lift reveal reveal-delay-2 tilt-card">
+        <div
+          class="glass-card rounded-2xl p-8 lg:p-10 text-center card-lift reveal reveal-delay-2 tilt-card"
+        >
           <div class="tilt-card-shine"></div>
           <div class="relative tilt-card-inner">
-            <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4A853" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <div
+              class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#D4A853"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path
+                  d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg
+              >
             </div>
             <h3 class="font-serif font-bold text-xl text-brand-brown mb-3">Fresh Pastries</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Baked fresh daily. Pair your coffee with our croissants, ensaymadas, and seasonal treats made with love.</p>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Baked fresh daily. Pair your coffee with our croissants, ensaymadas, and seasonal
+              treats made with love.
+            </p>
           </div>
         </div>
-        <div class="glass-card rounded-2xl p-8 lg:p-10 text-center card-lift reveal reveal-delay-3 tilt-card">
+        <div
+          class="glass-card rounded-2xl p-8 lg:p-10 text-center card-lift reveal reveal-delay-3 tilt-card"
+        >
           <div class="tilt-card-shine"></div>
           <div class="relative tilt-card-inner">
-            <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4A853" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+            <div
+              class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#D4A853"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"
+                ></path><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 18V6"
+                ></path></svg
+              >
             </div>
             <h3 class="font-serif font-bold text-xl text-brand-brown mb-3">Great Value</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Quality coffee at fair prices. Student-friendly, because great taste shouldn't break the bank.</p>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Quality coffee at fair prices. Student-friendly, because great taste shouldn't break
+              the bank.
+            </p>
           </div>
         </div>
       </div>
@@ -53,19 +128,47 @@ import Hero from "../components/Hero.astro";
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
         <div class="text-center reveal reveal-delay-1">
-          <div class="font-serif text-4xl lg:text-5xl font-bold text-brand-gold mb-1" data-count-to="50" data-count-suffix="+" data-count-duration="2000">0</div>
+          <div
+            class="font-serif text-4xl lg:text-5xl font-bold text-brand-gold mb-1"
+            data-count-to="50"
+            data-count-suffix="+"
+            data-count-duration="2000"
+          >
+            0
+          </div>
           <p class="text-sm text-gray-500 uppercase tracking-wider">Coffee Varieties</p>
         </div>
         <div class="text-center reveal reveal-delay-2">
-          <div class="font-serif text-4xl lg:text-5xl font-bold text-brand-gold mb-1" data-count-to="1000" data-count-suffix="+" data-count-duration="2500">0</div>
+          <div
+            class="font-serif text-4xl lg:text-5xl font-bold text-brand-gold mb-1"
+            data-count-to="1000"
+            data-count-suffix="+"
+            data-count-duration="2500"
+          >
+            0
+          </div>
           <p class="text-sm text-gray-500 uppercase tracking-wider">Happy Customers</p>
         </div>
         <div class="text-center reveal reveal-delay-3">
-          <div class="font-serif text-4xl lg:text-5xl font-bold text-brand-gold mb-1" data-count-to="5" data-count-suffix="" data-count-duration="1500">0</div>
+          <div
+            class="font-serif text-4xl lg:text-5xl font-bold text-brand-gold mb-1"
+            data-count-to="5"
+            data-count-suffix=""
+            data-count-duration="1500"
+          >
+            0
+          </div>
           <p class="text-sm text-gray-500 uppercase tracking-wider">Years Serving</p>
         </div>
         <div class="text-center reveal reveal-delay-4">
-          <div class="font-serif text-4xl lg:text-5xl font-bold text-brand-gold mb-1" data-count-to="15" data-count-suffix="" data-count-duration="1500">0</div>
+          <div
+            class="font-serif text-4xl lg:text-5xl font-bold text-brand-gold mb-1"
+            data-count-to="15"
+            data-count-suffix=""
+            data-count-duration="1500"
+          >
+            0
+          </div>
           <p class="text-sm text-gray-500 uppercase tracking-wider">Menu Items</p>
         </div>
       </div>
@@ -73,36 +176,90 @@ import Hero from "../components/Hero.astro";
   </section>
 
   <section class="py-24 lg:py-32 bg-white relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-cream rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl"></div>
-    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-cream rounded-full translate-y-1/2 -translate-x-1/3 blur-3xl"></div>
+    <div
+      class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-cream rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-cream rounded-full translate-y-1/2 -translate-x-1/3 blur-3xl"
+    >
+    </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div class="reveal-left">
-          <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]">Our Story</span>
-          <h2 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-6">A Coffee Shop Born From Connection</h2>
+          <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]"
+            >Our Story</span
+          >
+          <h2 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-6">
+            A Coffee Shop Born From Connection
+          </h2>
           <p class="text-gray-500 leading-relaxed mb-6">
-            Brother Bean Coffee House was born from a simple idea — create a space where great coffee meets genuine connection. Located in the heart of Cavite, we serve handcrafted brews made from carefully selected beans, alongside fresh pastries and warm Filipino hospitality.
+            Brother Bean Coffee House was born from a simple idea — create a space where great
+            coffee meets genuine connection. Located in the heart of Cavite, we serve handcrafted
+            brews made from carefully selected beans, alongside fresh pastries and warm Filipino
+            hospitality.
           </p>
           <a href="/about" class="btn-primary inline-flex magnetic">
             Read Our Story
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+            >
           </a>
         </div>
         <div class="reveal-right">
           <div class="relative">
-            <div class="aspect-square rounded-[32px] bg-gradient-to-br from-brand-cream to-brand-cream-dark border border-brand-cream-dark flex items-center justify-center overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-transparent animate-ken-burns"></div>
+            <div
+              class="aspect-square rounded-[32px] bg-gradient-to-br from-brand-cream to-brand-cream-dark border border-brand-cream-dark flex items-center justify-center overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-transparent animate-ken-burns"
+              >
+              </div>
               <svg viewBox="0 0 200 200" class="w-40 h-40 text-brand-brown/10 relative z-10">
-                <rect x="40" y="70" width="120" height="100" rx="10" fill="none" stroke="currentColor" stroke-width="2"/>
-                <rect x="30" y="60" width="140" height="20" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
-                <path d="M150 85 Q170 95 170 110 Q170 125 150 130" fill="none" stroke="currentColor" stroke-width="2"/>
-                <line x1="60" y1="45" x2="60" y2="55" stroke="currentColor" stroke-width="1.5"/>
-                <line x1="80" y1="40" x2="80" y2="55" stroke="currentColor" stroke-width="1.5"/>
-                <line x1="100" y1="38" x2="100" y2="55" stroke="currentColor" stroke-width="1.5"/>
-                <line x1="120" y1="42" x2="120" y2="55" stroke="currentColor" stroke-width="1.5"/>
+                <rect
+                  x="40"
+                  y="70"
+                  width="120"
+                  height="100"
+                  rx="10"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"></rect>
+                <rect
+                  x="30"
+                  y="60"
+                  width="140"
+                  height="20"
+                  rx="6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"></rect>
+                <path
+                  d="M150 85 Q170 95 170 110 Q170 125 150 130"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"></path>
+                <line x1="60" y1="45" x2="60" y2="55" stroke="currentColor" stroke-width="1.5"
+                ></line>
+                <line x1="80" y1="40" x2="80" y2="55" stroke="currentColor" stroke-width="1.5"
+                ></line>
+                <line x1="100" y1="38" x2="100" y2="55" stroke="currentColor" stroke-width="1.5"
+                ></line>
+                <line x1="120" y1="42" x2="120" y2="55" stroke="currentColor" stroke-width="1.5"
+                ></line>
               </svg>
             </div>
-            <div class="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 border border-brand-gold/20 flex items-center justify-center backdrop-blur-sm animate-glow-pulse">
+            <div
+              class="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 border border-brand-gold/20 flex items-center justify-center backdrop-blur-sm animate-glow-pulse"
+            >
               <span class="font-serif text-3xl font-bold text-brand-gold">4.9</span>
             </div>
           </div>
@@ -111,22 +268,46 @@ import Hero from "../components/Hero.astro";
     </div>
   </section>
 
-  <section class="py-24 lg:py-32 bg-gradient-to-br from-brand-brown to-brand-brown-darker text-white text-center relative overflow-hidden">
+  <section
+    class="py-24 lg:py-32 bg-gradient-to-br from-brand-brown to-brand-brown-darker text-white text-center relative overflow-hidden"
+  >
     <div class="absolute inset-0 bg-noise opacity-[0.06]"></div>
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent"></div>
+    <div
+      class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent"
+    >
+    </div>
     <div class="absolute inset-0 overflow-hidden">
       <div class="absolute -top-20 -right-20 w-60 h-60 bg-brand-gold/5 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-brand-gold/5 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-brand-gold/5 rounded-full blur-3xl">
+      </div>
     </div>
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-      <span class="text-brand-gold/80 font-medium text-xs uppercase tracking-[0.25em]">Come Visit</span>
+      <span class="text-brand-gold/80 font-medium text-xs uppercase tracking-[0.25em]"
+        >Come Visit</span
+      >
       <h2 class="font-serif text-4xl lg:text-5xl font-bold mt-3 mb-4">Experience Brother Bean</h2>
       <div class="section-divider"></div>
-      <p class="text-white/60 text-lg mb-4">Dasmariñas, Cavite &middot; Open Daily 9:00 AM – 7:00 PM</p>
-       <p class="text-white/40 text-sm mb-10">0917 172 8458</p>
+      <p class="text-white/60 text-lg mb-4">
+        Dasmariñas, Cavite &middot; Open Daily 9:00 AM – 7:00 PM
+      </p>
+      <p class="text-white/40 text-sm mb-10">0917 172 8458</p>
       <a href="/location" class="btn-primary text-base magnetic">
         Get Directions
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle
+            cx="12"
+            cy="10"
+            r="3"></circle></svg
+        >
       </a>
     </div>
   </section>

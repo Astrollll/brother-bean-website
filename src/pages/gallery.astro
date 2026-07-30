@@ -3,25 +3,60 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import GalleryGrid from "../components/GalleryGrid.astro";
 
 const photos = [
-  { src: "", alt: "Interior of Brother Bean Coffee Shop", caption: "Cozy interior" },
-  { src: "", alt: "Barista pouring latte art", caption: "Latte art in motion" },
-  { src: "", alt: "Pastry display case", caption: "Fresh pastries daily" },
-  { src: "", alt: "Coffee beans and brewing setup", caption: "Our brewing station" },
-  { src: "", alt: "Group of friends enjoying coffee", caption: "Good times with great coffee" },
-  { src: "", alt: "Outdoor seating area", caption: "Enjoy the Cavite breeze" },
+  {
+    src: "/gallery/gallery-01-cozy-interior.jpg",
+    alt: "Interior of Brother Bean Coffee Shop",
+    caption: "Cozy interior",
+  },
+  {
+    src: "/gallery/gallery-02-latte-art.jpg",
+    alt: "Barista pouring latte art",
+    caption: "Latte art in motion",
+  },
+  {
+    src: "/gallery/gallery-03-pastries.jpg",
+    alt: "Pastry display case",
+    caption: "Fresh pastries daily",
+  },
+  {
+    src: "/gallery/gallery-04-brewing.jpg",
+    alt: "Coffee beans and brewing setup",
+    caption: "Our brewing station",
+  },
+  {
+    src: "/gallery/gallery-05-friends.jpg",
+    alt: "Group of friends enjoying coffee",
+    caption: "Good times with great coffee",
+  },
+  {
+    src: "/gallery/gallery-06-outdoor.jpg",
+    alt: "Outdoor seating area",
+    caption: "Enjoy the Cavite breeze",
+  },
 ];
 ---
 
-<BaseLayout title="Gallery" hideSuffix description="Take a look inside Brother Bean Coffee House — the space, the coffee, and the moments that make it special.">
+<BaseLayout
+  title="Gallery"
+  hideSuffix
+  description="Take a look inside Brother Bean Coffee House — the space, the coffee, and the moments that make it special."
+>
   <div class="h-16 lg:h-20"></div>
   <section class="py-20 lg:py-28 relative overflow-hidden">
     <div class="absolute inset-0 bg-mesh"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="section-header reveal">
-        <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]">Moments Captured</span>
-        <h1 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-4">Gallery</h1>
+        <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]"
+          >Moments Captured</span
+        >
+        <h1 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-4">
+          Gallery
+        </h1>
         <div class="section-divider"></div>
-        <p class="text-gray-500 max-w-lg mx-auto">A glimpse into the Brother Bean experience — the space, the coffee, and the moments that make it special.</p>
+        <p class="text-gray-500 max-w-lg mx-auto">
+          A glimpse into the Brother Bean experience — the space, the coffee, and the moments that
+          make it special.
+        </p>
       </div>
       <GalleryGrid images={photos} />
     </div>

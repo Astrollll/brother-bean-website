@@ -2,43 +2,91 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Location & Hours" hideSuffix description="Visit Brother Bean Coffee House at N. Guevarra St. Brgy. Zone 1, Dasmariñas, Philippines 4114. Open daily 9:00 AM - 7:00 PM.">
+<BaseLayout
+  title="Location & Hours"
+  hideSuffix
+  description="Visit Brother Bean Coffee House at N. Guevarra St. Brgy. Zone 1, Dasmariñas, Philippines 4114. Open daily 9:00 AM - 7:00 PM."
+>
   <div class="h-16 lg:h-20"></div>
   <section class="py-20 lg:py-28 relative overflow-hidden">
     <div class="absolute inset-0 bg-mesh"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="section-header reveal">
-        <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]">Come See Us</span>
-        <h1 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-4">Find Us</h1>
+        <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]"
+          >Come See Us</span
+        >
+        <h1 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-4">
+          Find Us
+        </h1>
         <div class="section-divider"></div>
         <p class="text-gray-500">Come visit — we'd love to serve you.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         <div class="space-y-5">
-          <div class="card-lift bg-white rounded-2xl p-6 border border-brand-cream-dark hover:shadow-xl reveal-left tilt-card" style="animation-delay: 0.1s">
+          <div
+            class="card-lift bg-white rounded-2xl p-6 border border-brand-cream-dark hover:shadow-xl reveal-left tilt-card"
+            style="animation-delay: 0.1s"
+          >
             <div class="tilt-card-shine"></div>
             <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A853" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div
+                class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center shrink-0"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#D4A853"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle
+                    cx="12"
+                    cy="10"
+                    r="3"></circle></svg
+                >
               </div>
               <div>
                 <h3 class="font-serif font-bold text-lg text-brand-brown mb-1">Address</h3>
-                <p class="text-gray-500">N. Guevarra St. Brgy. Zone 1<br />Dasmariñas, Philippines 4114</p>
+                <p class="text-gray-500">
+                  N. Guevarra St. Brgy. Zone 1<br />Dasmariñas, Philippines 4114
+                </p>
               </div>
             </div>
           </div>
 
-          <div class="card-lift bg-white rounded-2xl p-6 border border-brand-cream-dark hover:shadow-xl reveal-left tilt-card" style="animation-delay: 0.2s">
+          <div
+            class="card-lift bg-white rounded-2xl p-6 border border-brand-cream-dark hover:shadow-xl reveal-left tilt-card"
+            style="animation-delay: 0.2s"
+          >
             <div class="tilt-card-shine"></div>
             <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A853" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div
+                class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center shrink-0"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#D4A853"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"
+                  ></polyline></svg
+                >
               </div>
               <div class="flex-1">
                 <h3 class="font-serif font-bold text-lg text-brand-brown mb-3">Hours</h3>
                 <div class="space-y-2">
-                  <div class="flex justify-between items-center py-2 px-3 rounded-lg bg-brand-cream/50">
+                  <div
+                    class="flex justify-between items-center py-2 px-3 rounded-lg bg-brand-cream/50"
+                  >
                     <span class="text-sm text-gray-500">Monday – Sunday</span>
                     <span class="text-sm font-semibold text-brand-brown">9:00 AM – 7:00 PM</span>
                   </div>
@@ -47,11 +95,29 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </div>
           </div>
 
-          <div class="card-lift bg-white rounded-2xl p-6 border border-brand-cream-dark hover:shadow-xl reveal-left tilt-card" style="animation-delay: 0.3s">
+          <div
+            class="card-lift bg-white rounded-2xl p-6 border border-brand-cream-dark hover:shadow-xl reveal-left tilt-card"
+            style="animation-delay: 0.3s"
+          >
             <div class="tilt-card-shine"></div>
             <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A853" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <div
+                class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center shrink-0"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#D4A853"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path></svg
+                >
               </div>
               <div>
                 <h3 class="font-serif font-bold text-lg text-brand-brown mb-1">Contact</h3>
@@ -72,8 +138,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              title="Brother Bean Coffee House location"
-            ></iframe>
+              title="Brother Bean Coffee House location"></iframe>
           </div>
         </div>
       </div>

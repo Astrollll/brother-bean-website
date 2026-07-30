@@ -8,7 +8,11 @@ export interface Props {
   hideSuffix?: boolean;
 }
 
-const { title = "Brother Bean Coffee House", description = "Handcrafted coffee in the heart of Cavite", hideSuffix = false } = Astro.props;
+const {
+  title = "Brother Bean Coffee House",
+  description = "Handcrafted coffee in the heart of Cavite",
+  hideSuffix = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -83,17 +87,22 @@ const { title = "Brother Bean Coffee House", description = "Handcrafted coffee i
       });
     });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.08, rootMargin: "0px 0px -50px 0px" });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -50px 0px" },
+    );
 
-    document.querySelectorAll(
-      ".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .reveal-clip"
-    ).forEach((el) => observer.observe(el));
+    document
+      .querySelectorAll(
+        ".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .reveal-clip",
+      )
+      .forEach((el) => observer.observe(el));
 
     document.querySelectorAll("[data-count-to]").forEach((el) => {
       const target = parseInt(el.dataset.countTo || "0");
@@ -110,14 +119,17 @@ const { title = "Brother Bean Coffee House", description = "Handcrafted coffee i
         if (p < 1) requestAnimationFrame(update);
       }
 
-      const countObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            requestAnimationFrame(update);
-            countObserver.unobserve(el);
-          }
-        });
-      }, { threshold: 0.5 });
+      const countObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              requestAnimationFrame(update);
+              countObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
       countObserver.observe(el);
     });
   }

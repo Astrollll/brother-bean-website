@@ -17,6 +17,7 @@ Yes, slurping is encouraged. It aerates the coffee and spreads it across your pa
 ### Step 3: Identify
 
 Think about what you're tasting:
+
 - **Acidity** — Is it bright and crisp? (Like citrus or berries)
 - **Body** — Does it feel light, creamy, or heavy?
 - **Finish** — How long does the flavor linger?
