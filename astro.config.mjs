@@ -10,5 +10,5 @@ export default defineConfig({
     imageService: "compile",
     platformProxy: { enabled: true },
   }),
-  site: "https://brother-bean-coffee.pages.dev",
+  site: "https://brother-bean-website.pages.dev",
 });
