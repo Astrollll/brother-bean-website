@@ -12,10 +12,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="absolute inset-0 bg-mesh"></div>
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="section-header reveal-rotate">
-        <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]"
+        <span
+          class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]"
+          data-sf="page_copy.about.eyebrow"
           >Who We Are</span
         >
-        <h1 class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-4">
+        <h1
+          class="font-serif text-4xl lg:text-5xl font-bold text-brand-brown mt-3 mb-4"
+          data-sf="page_copy.about.heading"
+        >
           Our Story
         </h1>
         <div class="section-divider"></div>
@@ -76,7 +81,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div
           class="reveal-left reveal-delay-1 p-6 rounded-xl bg-white/50 border border-brand-cream-dark hover:border-brand-gold/20 transition-all duration-500"
         >
-          <p class="text-lg">
+          <p class="text-lg" data-sf="page_copy.about.paragraphs.0">
             Brother Bean Coffee House started as a dream shared by a group of friends who believed
             that coffee is more than just a drink — it's an experience. It's the warmth of the mug
             on a rainy morning, the laughter shared over a table, and the quiet moments of
@@ -86,7 +91,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div
           class="reveal-right reveal-delay-2 p-6 rounded-xl bg-white/50 border border-brand-cream-dark hover:border-brand-gold/20 transition-all duration-500"
         >
-          <p>
+          <p data-sf="page_copy.about.paragraphs.1">
             Located in the heart of Cavite, we set out to build a space where the community could
             gather, work, study, and connect. Every corner of Brother Bean is designed to feel like
             a second home — familiar, comforting, and inviting.
@@ -95,7 +100,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div
           class="reveal-left reveal-delay-3 p-6 rounded-xl bg-white/50 border border-brand-cream-dark hover:border-brand-gold/20 transition-all duration-500"
         >
-          <p>
+          <p data-sf="page_copy.about.paragraphs.2">
             Our beans are carefully sourced and roasted to highlight their natural flavors. From the
             bold kick of our Americano to the creamy sweetness of our Spanish Latte, every drink is
             made to order with precision and care.
@@ -104,7 +109,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div
           class="reveal-right reveal-delay-4 p-6 rounded-xl bg-white/50 border border-brand-cream-dark hover:border-brand-gold/20 transition-all duration-500"
         >
-          <p>
+          <p data-sf="page_copy.about.paragraphs.3">
             We also take pride in our food offerings — from buttery croissants to hearty Filipino
             sopas, there's something for every craving.
           </p>
@@ -130,7 +135,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"
           ></path></svg
         >
-        <p class="font-serif text-2xl lg:text-3xl text-brand-brown font-semibold italic">
+        <p
+          class="font-serif text-2xl lg:text-3xl text-brand-brown font-semibold italic"
+          data-sf="page_copy.about.quote"
+        >
           "Come as a customer, leave as family."
         </p>
       </div>

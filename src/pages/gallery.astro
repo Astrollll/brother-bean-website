@@ -1,39 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import GalleryGrid from "../components/GalleryGrid.astro";
-
-const photos = [
-  {
-    src: "/gallery/gallery-01-cozy-interior.jpg",
-    alt: "Interior of Brother Bean Coffee Shop",
-    caption: "Cozy interior",
-  },
-  {
-    src: "/gallery/gallery-02-latte-art.jpg",
-    alt: "Barista pouring latte art",
-    caption: "Latte art in motion",
-  },
-  {
-    src: "/gallery/gallery-03-pastries.jpg",
-    alt: "Pastry display case",
-    caption: "Fresh pastries daily",
-  },
-  {
-    src: "/gallery/gallery-04-brewing.jpg",
-    alt: "Coffee beans and brewing setup",
-    caption: "Our brewing station",
-  },
-  {
-    src: "/gallery/gallery-05-friends.jpg",
-    alt: "Group of friends enjoying coffee",
-    caption: "Good times with great coffee",
-  },
-  {
-    src: "/gallery/gallery-06-outdoor.jpg",
-    alt: "Outdoor seating area",
-    caption: "Enjoy the Cavite breeze",
-  },
-];
+import GallerySection from "../components/react/GallerySection";
 ---
 
 <BaseLayout
@@ -58,7 +25,7 @@ const photos = [
           make it special.
         </p>
       </div>
-      <GalleryGrid images={photos} />
+      <GallerySection client:load />
     </div>
   </section>
 </BaseLayout>

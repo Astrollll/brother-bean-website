@@ -1,11 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import MenuCard from "../components/MenuCard.astro";
+import MenuSection from "../components/react/MenuSection";
 import { getCollection } from "astro:content";
 
 const menuItems = await getCollection("menu");
-const categories = [...new Set(menuItems.map((item) => item.data.category))];
-let globalIndex = 0;
+const initialMenu = menuItems.map((item) => item.data);
 ---
 
 <BaseLayout
@@ -30,50 +29,7 @@ let globalIndex = 0;
         </p>
       </div>
 
-      <div class="flex flex-wrap gap-3 justify-center mb-14">
-        {
-          categories.map((cat, i) => (
-            <span
-              class="reveal px-5 py-2.5 rounded-full text-sm font-medium bg-white border border-brand-cream-dark text-brand-brown hover:border-brand-gold/40 hover:bg-brand-gold/5 hover:scale-105 transition-all duration-300 cursor-default"
-              style={`animation-delay: ${i * 0.1}s`}
-            >
-              {cat}
-            </span>
-          ))
-        }
-      </div>
-
-      {
-        categories.map((cat, catIdx) => (
-          <div
-            class="mb-14 reveal"
-            style={`animation-delay: ${catIdx * 0.12}s`}
-            transition:name={`menu-category-${cat}`}
-          >
-            <h2 class="font-serif text-2xl font-bold text-brand-brown mb-6 flex items-center gap-3">
-              <span class="w-8 h-1 bg-gradient-to-r from-brand-gold to-brand-gold-light rounded-full" />
-              {cat}
-            </h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {menuItems
-                .filter((item) => item.data.category === cat)
-                .map((item) => {
-                  const idx = globalIndex;
-                  globalIndex++;
-                  return (
-                    <MenuCard
-                      name={item.data.name}
-                      price={item.data.price}
-                      description={item.data.description}
-                      category={item.data.category}
-                      index={idx}
-                    />
-                  );
-                })}
-            </div>
-          </div>
-        ))
-      }
+      <MenuSection client:load initialMenu={initialMenu} />
 
       <div class="mt-16 reveal">
         <div

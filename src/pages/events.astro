@@ -1,44 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const events = [
-  {
-    title: "Coffee Tasting Session",
-    date: "Every Saturday",
-    time: "10:00 AM – 11:30 AM",
-    description:
-      "Join us for a guided coffee tasting. Learn about different brewing methods and flavor profiles while sampling our featured beans.",
-    price: "Free with any purchase",
-    day: "SAT",
-    color: "from-amber-800/20 to-amber-600/10",
-    badge: "bg-amber-500",
-    number: "01",
-  },
-  {
-    title: "Open Mic Night",
-    date: "Every Friday",
-    time: "6:00 PM – 8:00 PM",
-    description:
-      "Show off your talent or just sit back and enjoy. Poetry, music, comedy — all are welcome on our little stage.",
-    price: "Free entry",
-    day: "FRI",
-    color: "from-violet-800/20 to-violet-600/10",
-    badge: "bg-violet-500",
-    number: "02",
-  },
-  {
-    title: "Study & Sip",
-    date: "Every Sunday",
-    time: "1:00 PM – 5:00 PM",
-    description:
-      "Bring your books and laptops. Enjoy unlimited brewed coffee refills for just ₱99 while you study.",
-    price: "₱99 unlimited coffee",
-    day: "SUN",
-    color: "from-emerald-800/20 to-emerald-600/10",
-    badge: "bg-emerald-500",
-    number: "03",
-  },
-];
+import EventsSection from "../components/react/EventsSection";
 ---
 
 <BaseLayout
@@ -61,80 +23,7 @@ const events = [
         </p>
       </div>
 
-      <div class="max-w-3xl mx-auto space-y-6">
-        {
-          events.map((event, i) => (
-            <article
-              class="card-lift bg-white rounded-2xl border border-brand-cream-dark overflow-hidden reveal tilt-card"
-              style={`animation-delay: ${i * 0.15}s`}
-            >
-              <div class="tilt-card-shine" />
-              <div class="flex flex-col sm:flex-row relative">
-                <div class="sm:w-24 sm:min-w-[96px] bg-gradient-to-b from-brand-brown to-brand-brown-dark text-white flex sm:flex-col items-center justify-center py-4 sm:py-6 gap-2 relative overflow-hidden">
-                  <div class="absolute inset-0 bg-noise opacity-[0.08]" />
-                  <span class="relative text-xs font-semibold uppercase tracking-wider opacity-60">
-                    {event.day}
-                  </span>
-                  <span class="relative text-2xl font-serif font-bold">{event.number}</span>
-                </div>
-                <div class="flex-1 p-6">
-                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
-                    <h2 class="font-serif text-xl font-bold text-brand-brown">{event.title}</h2>
-                    <span class="text-xs font-semibold whitespace-nowrap px-3 py-1.5 rounded-full bg-brand-gold/10 text-brand-gold">
-                      {event.price}
-                    </span>
-                  </div>
-                  <div class="flex flex-wrap gap-x-5 gap-y-1 text-sm text-gray-400 mb-3">
-                    <span class="flex items-center gap-1.5">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="text-brand-gold/70"
-                      >
-                        <>
-                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                          <line x1="16" x2="16" y1="2" y2="6" />
-                          <line x1="8" x2="8" y1="2" y2="6" />
-                          <line x1="3" x2="21" y1="10" y2="10" />
-                        </>
-                      </svg>
-                      {event.date}
-                    </span>
-                    <span class="flex items-center gap-1.5">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="text-brand-gold/70"
-                      >
-                        <>
-                          <circle cx="12" cy="12" r="10" />
-                          <polyline points="12 6 12 12 16 14" />
-                        </>
-                      </svg>
-                      {event.time}
-                    </span>
-                  </div>
-                  <p class="text-gray-500 text-sm leading-relaxed">{event.description}</p>
-                </div>
-              </div>
-            </article>
-          ))
-        }
-      </div>
+      <EventsSection client:load />
     </div>
   </section>
 </BaseLayout>

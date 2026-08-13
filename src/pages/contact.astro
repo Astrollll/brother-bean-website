@@ -64,7 +64,7 @@ import ContactForm from "../components/ContactForm.astro";
                 </div>
                 <div>
                   <p class="text-xs text-gray-400 uppercase tracking-wider">Email</p>
-                  <p class="text-brand-brown font-medium">yourbrotherbean@gmail.com</p>
+                  <p class="text-brand-brown font-medium" data-sf="site_info.email">yourbrotherbean@gmail.com</p>
                 </div>
               </div>
               <div class="flex items-start gap-4 group">
@@ -88,7 +88,7 @@ import ContactForm from "../components/ContactForm.astro";
                 </div>
                 <div>
                   <p class="text-xs text-gray-400 uppercase tracking-wider">Phone</p>
-                  <p class="text-brand-brown font-medium">0917 172 8458</p>
+                  <p class="text-brand-brown font-medium" data-sf="site_info.phone">0917 172 8458</p>
                 </div>
               </div>
               <div class="flex items-start gap-4 group">
@@ -114,7 +114,8 @@ import ContactForm from "../components/ContactForm.astro";
                 <div>
                   <p class="text-xs text-gray-400 uppercase tracking-wider">Visit</p>
                   <p class="text-brand-brown font-medium">
-                    Dasmariñas, Cavite<br />Open Daily 9:00 AM – 7:00 PM
+                    <span data-sf="site_info.address_line2">Dasmariñas, Cavite</span><br />
+                    <span data-sf="site_info.hours_short">Open Daily 9:00 AM – 7:00 PM</span>
                   </p>
                 </div>
               </div>
@@ -131,6 +132,8 @@ import ContactForm from "../components/ContactForm.astro";
             <div class="flex gap-4">
               <a
                 href="https://www.facebook.com/BrotherBean"
+                data-sf="site_info.facebook"
+                data-sf-attr="href"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="w-12 h-12 rounded-2xl bg-brand-cream flex items-center justify-center text-brand-brown hover:bg-brand-gold hover:text-white hover:scale-110 hover:rotate-3 transition-all duration-300 shadow-sm"
@@ -149,6 +152,8 @@ import ContactForm from "../components/ContactForm.astro";
               </a>
               <a
                 href="https://www.instagram.com/brotherbean.coffeehouse/"
+                data-sf="site_info.instagram"
+                data-sf-attr="href"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="w-12 h-12 rounded-2xl bg-brand-cream flex items-center justify-center text-brand-brown hover:bg-brand-gold hover:text-white hover:scale-110 hover:rotate-3 transition-all duration-300 shadow-sm"

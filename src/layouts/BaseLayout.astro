@@ -37,7 +37,10 @@ const {
 </html>
 
 <script>
+  import { hydrateSiteContent } from "../lib/siteInfo";
+
   function init() {
+    hydrateSiteContent();
     const progress = document.getElementById("scrollProgress");
     if (progress) {
       let ticking = false;

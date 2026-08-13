@@ -272,7 +272,9 @@
       <div class="max-w-xl">
         <div class="flex items-center gap-3 mb-5 reveal hero-text" style="animation-delay: 0.05s">
           <span class="w-8 h-px bg-brand-gold/80"></span>
-          <span class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]"
+          <span
+            class="text-brand-gold font-medium text-xs uppercase tracking-[0.25em]"
+            data-sf="page_copy.hero.location"
             >Dasmariñas, Cavite</span
           >
         </div>
@@ -280,21 +282,22 @@
           class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-shadow-glow hero-text"
         >
           <span class="inline-block text-white reveal" style="animation-delay: 0.1s"
-            >Your Daily Cup of</span
+            ><span data-sf="page_copy.hero.headline_1">Your Daily Cup of</span></span
           ><br />
           <span class="inline-block reveal" style="animation-delay: 0.25s"
-            ><span class="text-gradient">Warmth</span></span
+            ><span class="text-gradient"><span data-sf="page_copy.hero.headline_2">Warmth</span></span></span
           >
         </h1>
         <p
           class="text-lg lg:text-xl text-white/85 mb-10 leading-relaxed max-w-lg reveal hero-text"
           style="animation-delay: 0.35s"
+          data-sf="page_copy.hero.subtext"
         >
           Handcrafted coffee, warm conversations, and a home away from home in the heart of Cavite.
         </p>
         <div class="flex flex-wrap gap-4 reveal" style="animation-delay: 0.5s">
           <a href="/menu" class="btn-primary magnetic text-base">
-            Explore Our Menu
+            <span data-sf="page_copy.hero.primary_cta">Explore Our Menu</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -307,7 +310,9 @@
               stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
             >
           </a>
-          <a href="/about" class="btn-outline magnetic text-base"> Our Story </a>
+          <a href="/about" class="btn-outline magnetic text-base">
+            <span data-sf="page_copy.hero.secondary_cta">Our Story</span>
+          </a>
         </div>
       </div>
 
