@@ -12,4 +12,16 @@ export default defineConfig({
     platformProxy: { enabled: true },
   }),
   site: "https://brother-bean-website.pages.dev",
+  vite: {
+    resolve: {
+      alias: import.meta.env.PROD
+        ? { "react-dom/server": "react-dom/server.edge" }
+        : undefined,
+    },
+    ssr: {
+      alias: import.meta.env.PROD
+        ? { "react-dom/server": "react-dom/server.edge" }
+        : undefined,
+    },
+  },
 });

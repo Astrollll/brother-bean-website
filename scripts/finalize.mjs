@@ -25,12 +25,7 @@ async function patchRoutesJson() {
 
 async function writeRedirects() {
   const file = path.join(dist, "_redirects");
-  const content = [
-    "/admin/* /admin/index.html 200",
-    "/admin /admin/ 302",
-    "/blog/* /blog/index.html 200",
-    "",
-  ].join("\n");
+  const content = ["/admin /admin/ 302", ""].join("\n");
   await writeFile(file, content);
   console.log("✔ wrote dist/_redirects");
 }
