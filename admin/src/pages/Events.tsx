@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { useEntity } from "../lib/useEntity";
 import type { EventItem } from "../lib/types";
-import { Alert, Modal, Spinner, Toggle } from "../components/ui";
+import { Alert, EmptyState, Modal, PageHeader, Spinner, Toggle } from "../components/ui";
+import { Icon } from "../components/icons";
 
 const emptyForm = { title: "", date: "", time: "", description: "", price: "", day: "SAT" };
 
@@ -87,57 +88,65 @@ export default function Events() {
   if (error) return <Alert type="error" message={error} />;
 
   return (
-    <div>
-      <header className="flex flex-wrap items-center justify-between gap-4 mb-8">
-        <div>
-          <h1 className="font-serif text-3xl font-bold text-brand-brown">Events</h1>
-          <p className="text-gray-500 text-sm mt-1">{rows.length} events.</p>
-        </div>
-        <button className="btn-primary" onClick={openAdd}>+ Add Event</button>
-      </header>
+    <div className="animate-fade-in-up">
+      <PageHeader
+        title="Events"
+        subtitle={`${rows.length} events.`}
+        actions={
+          <button className="btn-primary" onClick={openAdd}>
+            <Icon name="plus" className="w-4 h-4" />
+            Add Event
+          </button>
+        }
+      />
 
       <div className="card overflow-hidden">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="text-left text-xs uppercase tracking-wider text-gray-400 border-b border-brand-cream-dark">
-              <th className="px-4 py-3">Day</th>
-              <th className="px-4 py-3">Title</th>
-              <th className="px-4 py-3 hidden md:table-cell">When</th>
-              <th className="px-4 py-3 hidden lg:table-cell">Price</th>
-              <th className="px-4 py-3">Active</th>
-              <th className="px-4 py-3 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((item) => (
-              <tr key={item.id} className="border-b border-brand-cream/60 last:border-0 hover:bg-brand-cream/30">
-                <td className="px-4 py-3">
-                  <span className="px-2 py-1 rounded-full bg-brand-gold/10 text-brand-gold-dark text-xs font-semibold">
-                    {item.day}
-                  </span>
-                </td>
-                <td className="px-4 py-3 font-medium text-brand-brown">{item.title}</td>
-                <td className="px-4 py-3 text-gray-500 hidden md:table-cell">
-                  {item.date}
-                  {item.time ? ` · ${item.time}` : ""}
-                </td>
-                <td className="px-4 py-3 text-gray-500 hidden lg:table-cell">{item.price}</td>
-                <td className="px-4 py-3">
-                  <Toggle checked={item.is_active} onChange={() => toggleActive(item)} />
-                </td>
-                <td className="px-4 py-3 text-right whitespace-nowrap">
-                  <button onClick={() => openEdit(item)} className="text-brand-gold-dark font-medium mr-3">Edit</button>
-                  <button onClick={() => onDelete(item)} className="text-red-500 hover:text-red-700 font-medium">Delete</button>
-                </td>
+        {rows.length === 0 ? (
+          <EmptyState icon="calendar" title="No events yet" hint="Create your first event to get started." />
+        ) : (
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-brand-cream-dark table-head">
+                <th>Day</th>
+                <th>Title</th>
+                <th className="hidden md:table-cell">When</th>
+                <th className="hidden lg:table-cell">Price</th>
+                <th>Active</th>
+                <th className="text-right">Actions</th>
               </tr>
-            ))}
-            {rows.length === 0 && (
-              <tr>
-                <td colSpan={6} className="px-4 py-10 text-center text-gray-400">No events yet.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="table-body">
+              {rows.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    <span className="badge badge-gold">{item.day}</span>
+                  </td>
+                  <td className="font-medium text-brand-brown">{item.title}</td>
+                  <td className="text-gray-500 hidden md:table-cell">
+                    {item.date}
+                    {item.time ? ` · ${item.time}` : ""}
+                  </td>
+                  <td className="text-gray-500 hidden lg:table-cell">{item.price}</td>
+                  <td>
+                    <Toggle checked={item.is_active} onChange={() => toggleActive(item)} />
+                  </td>
+                  <td className="text-right whitespace-nowrap">
+                    <div className="inline-flex items-center gap-2">
+                      <button onClick={() => openEdit(item)} className="btn-ghost">
+                        <Icon name="edit" className="w-3.5 h-3.5" />
+                        Edit
+                      </button>
+                      <button onClick={() => onDelete(item)} className="btn-ghost-danger">
+                        <Icon name="trash" className="w-3.5 h-3.5" />
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
       <Modal open={modalOpen} title={editing ? "Edit Event" : "Add Event"} onClose={() => setModalOpen(false)}>

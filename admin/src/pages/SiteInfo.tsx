@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useSiteContent } from "../lib/useSiteContent";
-import { Alert, Spinner } from "../components/ui";
+import { Alert, PageHeader, Spinner } from "../components/ui";
 
 interface SiteInfoData {
   address_line1: string;
@@ -71,18 +71,16 @@ export default function SiteInfo() {
   if (loading) return <Spinner />;
 
   return (
-    <div className="max-w-2xl">
-      <header className="mb-8">
-        <h1 className="font-serif text-3xl font-bold text-brand-brown">Site Info</h1>
-        <p className="text-gray-500 text-sm mt-1">
-          Contact details, hours, and social links used across the site (footer, location, contact).
-        </p>
-      </header>
+    <div className="max-w-2xl animate-fade-in-up">
+      <PageHeader
+        title="Site Info"
+        subtitle="Contact details, hours, and social links used across the site (footer, location, contact)."
+      />
 
       {error && <Alert type="error" message={error} />}
       {saved && <Alert type="success" message="Site info saved." />}
 
-      <form onSubmit={onSubmit} className="card p-6 space-y-4">
+      <form onSubmit={onSubmit} className="card p-6 sm:p-8 space-y-4">
         {fields.map((field) => (
           <div key={field.key}>
             <label className="field-label">{field.label}</label>

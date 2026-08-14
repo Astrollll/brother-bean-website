@@ -247,6 +247,15 @@
 </div>
 
 <script>
+  declare global {
+    interface Window {
+      formspree: {
+        (action: string, options?: Record<string, unknown>): void;
+        q?: unknown[];
+      };
+    }
+    var formspree: Window["formspree"];
+  }
   window.formspree =
     window.formspree ||
     function () {
@@ -256,7 +265,7 @@
     formElement: "#newsletter-form",
     formId: "mjgnzlpe",
     onSuccess: function () {
-      document.getElementById("newsletter-form").reset();
+      (document.getElementById("newsletter-form") as HTMLFormElement).reset();
       document
         .getElementById("newsletter-success-overlay")
         .classList.remove("opacity-0", "pointer-events-none");
@@ -271,11 +280,12 @@
   });
 
   document.addEventListener("click", function (e) {
-    if (e.target.id === "newsletter-close-btn" || e.target.id === "newsletter-success-overlay") {
+    const target = e.target as HTMLElement;
+    if (target.id === "newsletter-close-btn" || target.id === "newsletter-success-overlay") {
       const overlay = document.getElementById("newsletter-success-overlay");
       overlay.classList.add("opacity-0", "pointer-events-none");
       overlay.querySelector("div:first-child").classList.add("scale-95");
     }
   });
 </script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer is:inline></script>

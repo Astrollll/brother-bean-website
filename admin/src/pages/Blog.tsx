@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { useEntity } from "../lib/useEntity";
 import type { BlogPost } from "../lib/types";
-import { Alert, Modal, Spinner, Toggle } from "../components/ui";
+import { Alert, EmptyState, Modal, PageHeader, Spinner, Toggle } from "../components/ui";
+import { Icon } from "../components/icons";
 
 const emptyForm = { title: "", description: "", body_markdown: "", published_at: "" };
 
@@ -94,50 +95,60 @@ export default function Blog() {
   if (error) return <Alert type="error" message={error} />;
 
   return (
-    <div>
-      <header className="flex flex-wrap items-center justify-between gap-4 mb-8">
-        <div>
-          <h1 className="font-serif text-3xl font-bold text-brand-brown">Blog</h1>
-          <p className="text-gray-500 text-sm mt-1">{rows.length} posts.</p>
-        </div>
-        <button className="btn-primary" onClick={openAdd}>+ New Post</button>
-      </header>
+    <div className="animate-fade-in-up">
+      <PageHeader
+        title="Blog"
+        subtitle={`${rows.length} posts.`}
+        actions={
+          <button className="btn-primary" onClick={openAdd}>
+            <Icon name="plus" className="w-4 h-4" />
+            New Post
+          </button>
+        }
+      />
 
       <div className="card overflow-hidden">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="text-left text-xs uppercase tracking-wider text-gray-400 border-b border-brand-cream-dark">
-              <th className="px-4 py-3">Title</th>
-              <th className="px-4 py-3 hidden md:table-cell">Published</th>
-              <th className="px-4 py-3 hidden lg:table-cell">Slug</th>
-              <th className="px-4 py-3">Active</th>
-              <th className="px-4 py-3 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((item) => (
-              <tr key={item.id} className="border-b border-brand-cream/60 last:border-0 hover:bg-brand-cream/30">
-                <td className="px-4 py-3 font-medium text-brand-brown">{item.title}</td>
-                <td className="px-4 py-3 text-gray-500 hidden md:table-cell">
-                  {item.published_at ? new Date(item.published_at).toLocaleDateString() : "—"}
-                </td>
-                <td className="px-4 py-3 text-gray-400 hidden lg:table-cell">/{item.slug}</td>
-                <td className="px-4 py-3">
-                  <Toggle checked={item.is_active} onChange={() => toggleActive(item)} />
-                </td>
-                <td className="px-4 py-3 text-right whitespace-nowrap">
-                  <button onClick={() => openEdit(item)} className="text-brand-gold-dark font-medium mr-3">Edit</button>
-                  <button onClick={() => onDelete(item)} className="text-red-500 hover:text-red-700 font-medium">Delete</button>
-                </td>
+        {rows.length === 0 ? (
+          <EmptyState icon="pen" title="No posts yet" hint="Write your first blog post." />
+        ) : (
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-brand-cream-dark table-head">
+                <th>Title</th>
+                <th className="hidden md:table-cell">Published</th>
+                <th className="hidden lg:table-cell">Slug</th>
+                <th>Active</th>
+                <th className="text-right">Actions</th>
               </tr>
-            ))}
-            {rows.length === 0 && (
-              <tr>
-                <td colSpan={5} className="px-4 py-10 text-center text-gray-400">No posts yet.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="table-body">
+              {rows.map((item) => (
+                <tr key={item.id}>
+                  <td className="font-medium text-brand-brown">{item.title}</td>
+                  <td className="text-gray-500 hidden md:table-cell">
+                    {item.published_at ? new Date(item.published_at).toLocaleDateString() : "—"}
+                  </td>
+                  <td className="text-gray-400 hidden lg:table-cell">/{item.slug}</td>
+                  <td>
+                    <Toggle checked={item.is_active} onChange={() => toggleActive(item)} />
+                  </td>
+                  <td className="text-right whitespace-nowrap">
+                    <div className="inline-flex items-center gap-2">
+                      <button onClick={() => openEdit(item)} className="btn-ghost">
+                        <Icon name="edit" className="w-3.5 h-3.5" />
+                        Edit
+                      </button>
+                      <button onClick={() => onDelete(item)} className="btn-ghost-danger">
+                        <Icon name="trash" className="w-3.5 h-3.5" />
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
       <Modal open={modalOpen} title={editing ? "Edit Post" : "New Post"} onClose={() => setModalOpen(false)}>

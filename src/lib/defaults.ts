@@ -37,6 +37,16 @@ export const DEFAULT_SITE_INFO: SiteInfo = {
   maps_embed: "https://www.google.com/maps?q=14.33100764398651,120.9367413696932&z=18&output=embed",
 };
 
+export interface MenuItem {
+  id?: string;
+  name: string;
+  description?: string;
+  price: string;
+  category: string;
+  display_order?: number;
+  is_active?: boolean;
+}
+
 export interface EventItem {
   id?: string;
   title: string;

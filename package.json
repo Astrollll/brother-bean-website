@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "dev:admin": "vite admin",
+    "dev:admin": "node scripts/admin.mjs",
     "build": "npm run build:site && npm run build:admin && node scripts/finalize.mjs",
     "build:site": "astro build",
-    "build:admin": "vite build admin",
+    "build:admin": "node scripts/admin.mjs build",
     "preview": "astro preview",
     "check": "astro check",
     "format": "prettier --write .",
@@ -45,6 +45,6 @@
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3",
-    "vite": "^8.2.1"
+    "vite": "^6.4.3"
   }
 }

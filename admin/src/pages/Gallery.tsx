@@ -2,7 +2,8 @@ import { useRef, useState, type FormEvent } from "react";
 import { useEntity } from "../lib/useEntity";
 import { supabase } from "../lib/supabase";
 import type { GalleryImage } from "../lib/types";
-import { Alert, Modal, Spinner, Toggle } from "../components/ui";
+import { Alert, EmptyState, Modal, PageHeader, Spinner, Toggle } from "../components/ui";
+import { Icon } from "../components/icons";
 
 const emptyForm = { alt_text: "", caption: "" };
 
@@ -113,41 +114,56 @@ export default function Gallery() {
   if (error) return <Alert type="error" message={error} />;
 
   return (
-    <div>
-      <header className="flex flex-wrap items-center justify-between gap-4 mb-8">
-        <div>
-          <h1 className="font-serif text-3xl font-bold text-brand-brown">Gallery</h1>
-          <p className="text-gray-500 text-sm mt-1">{rows.length} photos.</p>
-        </div>
-        <button className="btn-primary" onClick={openAdd}>+ Upload Photo</button>
-      </header>
+    <div className="animate-fade-in-up">
+      <PageHeader
+        title="Gallery"
+        subtitle={`${rows.length} photos.`}
+        actions={
+          <button className="btn-primary" onClick={openAdd}>
+            <Icon name="upload" className="w-4 h-4" />
+            Upload Photo
+          </button>
+        }
+      />
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {rows.map((item) => (
-          <div key={item.id} className={`card overflow-hidden ${item.is_active ? "" : "opacity-50"}`}>
-            <div className="aspect-[4/3] overflow-hidden">
+          <div
+            key={item.id}
+            className={`card group overflow-hidden transition-all hover:shadow-lg ${item.is_active ? "" : "opacity-50"}`}
+          >
+            <div className="aspect-[4/3] overflow-hidden bg-brand-cream">
               {item.image_url ? (
-                <img src={item.image_url} alt={item.alt_text} className="w-full h-full object-cover" />
+                <img src={item.image_url} alt={item.alt_text} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               ) : (
-                <div className="w-full h-full bg-brand-cream flex items-center justify-center text-brand-gold">📷</div>
+                <div className="w-full h-full flex items-center justify-center text-brand-gold/60">
+                  <Icon name="image" className="w-8 h-8" />
+                </div>
               )}
             </div>
-            <div className="p-3">
+            <div className="p-3.5">
               <p className="text-sm font-medium text-brand-brown truncate">{item.caption || item.alt_text || "Untitled"}</p>
-              <div className="flex items-center justify-between mt-2">
+              <div className="flex items-center justify-between mt-2.5">
                 <Toggle checked={item.is_active} onChange={() => toggleActive(item)} />
-                <div className="space-x-3">
-                  <button onClick={() => openEdit(item)} className="text-brand-gold-dark text-sm font-medium">Edit</button>
-                  <button onClick={() => onDelete(item)} className="text-red-500 text-sm font-medium">Delete</button>
+                <div className="inline-flex items-center gap-2">
+                  <button onClick={() => openEdit(item)} className="btn-ghost !px-2.5 !py-1.5">
+                    <Icon name="edit" className="w-3.5 h-3.5" />
+                  </button>
+                  <button onClick={() => onDelete(item)} className="btn-ghost-danger !px-2.5 !py-1.5">
+                    <Icon name="trash" className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         ))}
-        {rows.length === 0 && (
-          <div className="col-span-full text-center text-gray-400 py-16">No photos yet. Upload one!</div>
-        )}
       </div>
+
+      {rows.length === 0 && (
+        <div className="card mt-4">
+          <EmptyState icon="image" title="No photos yet" hint="Upload your first photo of the shop." />
+        </div>
+      )}
 
       <Modal open={modalOpen} title={editing ? "Edit Photo" : "Upload Photo"} onClose={() => setModalOpen(false)}>
         <form onSubmit={onSubmit} className="space-y-4">

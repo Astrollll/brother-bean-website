@@ -8,6 +8,7 @@ import type {
   BlogPost,
   EventItem,
   GalleryImage,
+  MenuItem,
   PageCopy,
   SiteInfo,
 } from "./defaults";
@@ -76,6 +77,18 @@ export function usePageCopy(initial: PageCopy): QueryState<PageCopy> {
     const copy = data?.data as PageCopy | undefined;
     if (!copy) return null;
     return { ...initial, ...copy };
+  }, initial);
+}
+
+export function useMenu(initial: MenuItem[]): QueryState<MenuItem[]> {
+  return useSupabaseQuery(async () => {
+    const { data } = await supabase!
+      .from("menu_items")
+      .select("*")
+      .eq("is_active", true)
+      .order("display_order");
+    if (!data) return null;
+    return data as MenuItem[];
   }, initial);
 }
 

@@ -58,8 +58,8 @@ const {
       });
     }
 
-    document.querySelectorAll(".btn-primary.magnetic, .btn-outline.magnetic").forEach((btn) => {
-      btn.addEventListener("mousemove", (e) => {
+    document.querySelectorAll(".btn-primary.magnetic, .btn-outline.magnetic").forEach((btn: HTMLElement) => {
+      btn.addEventListener("mousemove", (e: MouseEvent) => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
@@ -70,8 +70,8 @@ const {
       });
     });
 
-    document.querySelectorAll(".tilt-card").forEach((card) => {
-      card.addEventListener("mousemove", (e) => {
+    document.querySelectorAll(".tilt-card").forEach((card: HTMLElement) => {
+      card.addEventListener("mousemove", (e: MouseEvent) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -80,7 +80,7 @@ const {
         const rotateX = ((y - centerY) / centerY) * -8;
         const rotateY = ((x - centerX) / centerX) * 8;
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        const shine = card.querySelector(".tilt-card-shine");
+        const shine = card.querySelector(".tilt-card-shine") as HTMLElement | null;
         if (shine) {
           shine.style.background = `radial-gradient(circle at ${(x / rect.width) * 100}% ${(y / rect.height) * 100}%, rgba(255,255,255,0.1) 0%, transparent 60%)`;
         }
@@ -107,13 +107,13 @@ const {
       )
       .forEach((el) => observer.observe(el));
 
-    document.querySelectorAll("[data-count-to]").forEach((el) => {
+    document.querySelectorAll("[data-count-to]").forEach((el: HTMLElement) => {
       const target = parseInt(el.dataset.countTo || "0");
       const duration = parseInt(el.dataset.countDuration || "2000");
       const suffix = el.dataset.countSuffix || "";
       const start = performance.now();
 
-      function update(now) {
+      function update(now: number) {
         const elapsed = now - start;
         const p = Math.min(elapsed / duration, 1);
         const eased = 1 - Math.pow(1 - p, 3);

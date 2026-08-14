@@ -40,8 +40,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const { profile, loading: profileLoading, refresh } = useProfile(sessionUser?.id);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw new Error(error.message);
+    if (data.session) {
+      setSessionUser({ id: data.session.user.id, email: data.session.user.email ?? undefined });
+    }
   };
 
   const signOut = async () => {

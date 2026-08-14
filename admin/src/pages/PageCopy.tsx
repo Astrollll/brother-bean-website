@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useSiteContent } from "../lib/useSiteContent";
-import { Alert, Spinner } from "../components/ui";
+import { Alert, PageHeader, Spinner } from "../components/ui";
 
 export default function PageCopy() {
   const { row, loading, error, save } = useSiteContent("page_copy");
@@ -51,18 +51,16 @@ export default function PageCopy() {
   if (loading) return <Spinner />;
 
   return (
-    <div className="max-w-3xl">
-      <header className="mb-8">
-        <h1 className="font-serif text-3xl font-bold text-brand-brown">Page Copy</h1>
-        <p className="text-gray-500 text-sm mt-1">
-          Text for the homepage (hero, offers, stats, story, call-to-action) and the about page.
-        </p>
-      </header>
+    <div className="max-w-3xl animate-fade-in-up">
+      <PageHeader
+        title="Page Copy"
+        subtitle="Text for the homepage (hero, offers, stats, story, call-to-action) and the about page."
+      />
 
       {error && <Alert type="error" message={error} />}
       {saved && <Alert type="success" message="Page copy saved." />}
 
-      <form onSubmit={onSubmit} className="card p-6">
+      <form onSubmit={onSubmit} className="card p-6 sm:p-8">
         <div className="mb-2 flex items-center justify-between">
           <label className="field-label mb-0">page_copy (JSON)</label>
           {!valid && <span className="text-xs text-red-500 font-medium">Invalid JSON</span>}

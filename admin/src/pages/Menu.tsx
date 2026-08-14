@@ -1,7 +1,8 @@
 import { useMemo, useState, type FormEvent } from "react";
 import { useEntity } from "../lib/useEntity";
 import type { MenuItem } from "../lib/types";
-import { Alert, Modal, Spinner, Toggle } from "../components/ui";
+import { Alert, EmptyState, Modal, PageHeader, Spinner, Toggle } from "../components/ui";
+import { Icon } from "../components/icons";
 
 const emptyForm = { name: "", description: "", price: "", category: "Coffee" };
 
@@ -88,14 +89,17 @@ export default function Menu() {
   if (error) return <Alert type="error" message={error} />;
 
   return (
-    <div>
-      <header className="flex flex-wrap items-center justify-between gap-4 mb-8">
-        <div>
-          <h1 className="font-serif text-3xl font-bold text-brand-brown">Menu</h1>
-          <p className="text-gray-500 text-sm mt-1">{rows.length} items across {categories.length} categories.</p>
-        </div>
-        <button className="btn-primary" onClick={openAdd}>+ Add Menu Item</button>
-      </header>
+    <div className="animate-fade-in-up">
+      <PageHeader
+        title="Menu"
+        subtitle={`${rows.length} items across ${categories.length} categories.`}
+        actions={
+          <button className="btn-primary" onClick={openAdd}>
+            <Icon name="plus" className="w-4 h-4" />
+            Add Menu Item
+          </button>
+        }
+      />
 
       <div className="space-y-8">
         {grouped.map(({ cat, items }) => (
@@ -106,39 +110,47 @@ export default function Menu() {
               <span className="text-xs text-gray-400 font-sans font-normal">({items.length})</span>
             </h2>
             <div className="card overflow-hidden">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="text-left text-xs uppercase tracking-wider text-gray-400 border-b border-brand-cream-dark">
-                    <th className="px-4 py-3">Name</th>
-                    <th className="px-4 py-3 hidden sm:table-cell">Description</th>
-                    <th className="px-4 py-3">Price</th>
-                    <th className="px-4 py-3">Active</th>
-                    <th className="px-4 py-3 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {items.map((item) => (
-                    <tr key={item.id} className="border-b border-brand-cream/60 last:border-0 hover:bg-brand-cream/30">
-                      <td className="px-4 py-3 font-medium text-brand-brown">{item.name}</td>
-                      <td className="px-4 py-3 text-gray-500 hidden sm:table-cell max-w-[260px] truncate">
-                        {item.description}
-                      </td>
-                      <td className="px-4 py-3 text-brand-gold-dark font-semibold whitespace-nowrap">{item.price}</td>
-                      <td className="px-4 py-3">
-                        <Toggle checked={item.is_active} onChange={() => toggleActive(item)} />
-                      </td>
-                      <td className="px-4 py-3 text-right whitespace-nowrap">
-                        <button onClick={() => openEdit(item)} className="text-brand-gold-dark hover:text-brand-gold-dark font-medium mr-3">
-                          Edit
-                        </button>
-                        <button onClick={() => onDelete(item)} className="text-red-500 hover:text-red-700 font-medium">
-                          Delete
-                        </button>
-                      </td>
+              {items.length === 0 ? (
+                <EmptyState icon="coffee" title={`No items in ${cat}`} hint="Add your first menu item." />
+              ) : (
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-brand-cream-dark table-head">
+                      <th>Name</th>
+                      <th className="hidden sm:table-cell">Description</th>
+                      <th>Price</th>
+                      <th>Active</th>
+                      <th className="text-right">Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="table-body">
+                    {items.map((item) => (
+                      <tr key={item.id}>
+                        <td className="font-medium text-brand-brown">{item.name}</td>
+                        <td className="text-gray-500 hidden sm:table-cell max-w-[260px] truncate">
+                          {item.description}
+                        </td>
+                        <td className="text-brand-gold-dark font-semibold whitespace-nowrap">{item.price}</td>
+                        <td>
+                          <Toggle checked={item.is_active} onChange={() => toggleActive(item)} />
+                        </td>
+                        <td className="text-right whitespace-nowrap">
+                          <div className="inline-flex items-center gap-2">
+                            <button onClick={() => openEdit(item)} className="btn-ghost">
+                              <Icon name="edit" className="w-3.5 h-3.5" />
+                              Edit
+                            </button>
+                            <button onClick={() => onDelete(item)} className="btn-ghost-danger">
+                              <Icon name="trash" className="w-3.5 h-3.5" />
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </div>
           </section>
         ))}

@@ -13,6 +13,7 @@ export default defineConfig({
   }),
   site: "https://brother-bean-website.pages.dev",
   vite: {
+    envPrefix: ["PUBLIC_", "VITE_"],
     resolve: {
       alias: import.meta.env.PROD
         ? { "react-dom/server": "react-dom/server.edge" }

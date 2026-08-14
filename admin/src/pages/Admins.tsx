@@ -1,7 +1,8 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { supabase } from "../lib/supabase";
 import type { Profile } from "../lib/types";
-import { Alert, Modal, Spinner, Toggle } from "../components/ui";
+import { Alert, EmptyState, Modal, PageHeader, Spinner, Toggle } from "../components/ui";
+import { Icon } from "../components/icons";
 
 async function callFn(body: Record<string, unknown>) {
   const { data, error } = await supabase.functions.invoke("admin-users", { body });
@@ -82,58 +83,77 @@ export default function Admins() {
   if (loading) return <Spinner />;
 
   return (
-    <div>
-      <header className="flex flex-wrap items-center justify-between gap-4 mb-8">
-        <div>
-          <h1 className="font-serif text-3xl font-bold text-brand-brown">Admin Accounts</h1>
-          <p className="text-gray-500 text-sm mt-1">Owner only — manage who can access this dashboard.</p>
-        </div>
-        <button className="btn-primary" onClick={() => { setForm({ email: "", password: "", role: "staff" }); setFormError(null); setModalOpen(true); }}>
-          + Add Admin
-        </button>
-      </header>
+    <div className="animate-fade-in-up">
+      <PageHeader
+        title="Admin Accounts"
+        subtitle="Owner only — manage who can access this dashboard."
+        actions={
+          <button
+            className="btn-primary"
+            onClick={() => { setForm({ email: "", password: "", role: "staff" }); setFormError(null); setModalOpen(true); }}
+          >
+            <Icon name="plus" className="w-4 h-4" />
+            Add Admin
+          </button>
+        }
+      />
 
       {error && <Alert type="error" message={error} />}
 
       <div className="card overflow-hidden">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="text-left text-xs uppercase tracking-wider text-gray-400 border-b border-brand-cream-dark">
-              <th className="px-4 py-3">Email</th>
-              <th className="px-4 py-3">Role</th>
-              <th className="px-4 py-3">Active</th>
-              <th className="px-4 py-3 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((profile) => (
-              <tr key={profile.id} className="border-b border-brand-cream/60 last:border-0 hover:bg-brand-cream/30">
-                <td className="px-4 py-3 font-medium text-brand-brown">{profile.email}</td>
-                <td className="px-4 py-3">
-                  <select
-                    value={profile.role}
-                    disabled={profile.role === "owner"}
-                    onChange={(e) => changeRole(profile, e.target.value as "owner" | "staff")}
-                    className="field-input !w-auto !py-1.5 text-xs disabled:opacity-60"
-                  >
-                    <option value="staff">staff</option>
-                    <option value="owner">owner</option>
-                  </select>
-                </td>
-                <td className="px-4 py-3">
-                  <Toggle checked={profile.is_active} onChange={() => toggleActive(profile)} />
-                </td>
-                <td className="px-4 py-3 text-right">
-                  {profile.role !== "owner" && (
-                    <button onClick={() => onDelete(profile)} className="text-red-500 hover:text-red-700 font-medium">
-                      Delete
-                    </button>
-                  )}
-                </td>
+        {rows.length === 0 ? (
+          <EmptyState icon="users" title="No admin accounts" hint="Add your first admin to get started." />
+        ) : (
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-brand-cream-dark table-head">
+                <th>Email</th>
+                <th>Role</th>
+                <th>Active</th>
+                <th className="text-right">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="table-body">
+              {rows.map((profile) => (
+                <tr key={profile.id}>
+                  <td className="font-medium text-brand-brown">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-cream font-serif text-sm font-bold text-brand-gold-dark ring-1 ring-brand-cream-dark">
+                        {(profile.email?.[0] || "A").toUpperCase()}
+                      </span>
+                      {profile.email}
+                    </div>
+                  </td>
+                  <td>
+                    {profile.role === "owner" ? (
+                      <span className="badge badge-gold">owner</span>
+                    ) : (
+                      <select
+                        value={profile.role}
+                        onChange={(e) => changeRole(profile, e.target.value as "owner" | "staff")}
+                        className="badge badge-gray cursor-pointer appearance-none pr-6 text-left focus:outline-none focus:ring-2 focus:ring-brand-gold/40"
+                      >
+                        <option value="staff">staff</option>
+                        <option value="owner">owner</option>
+                      </select>
+                    )}
+                  </td>
+                  <td>
+                    <Toggle checked={profile.is_active} onChange={() => toggleActive(profile)} />
+                  </td>
+                  <td className="text-right">
+                    {profile.role !== "owner" && (
+                      <button onClick={() => onDelete(profile)} className="btn-ghost-danger">
+                        <Icon name="trash" className="w-3.5 h-3.5" />
+                        Delete
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
       <Modal open={modalOpen} title="Add Admin" onClose={() => setModalOpen(false)}>

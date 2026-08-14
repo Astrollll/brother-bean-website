@@ -1,11 +1,6 @@
-import React, { useMemo, useState } from "react";
-
-export interface MenuItem {
-  name: string;
-  description?: string;
-  price: string;
-  category: string;
-}
+import React, { useMemo } from "react";
+import { useMenu } from "../../lib/supabaseContent";
+import type { MenuItem } from "../../lib/defaults";
 
 const categoryColors: Record<string, string> = {
   Coffee: "from-amber-800/20 to-amber-600/10 border-amber-800/20",
@@ -24,9 +19,9 @@ const dotColor = (category: string) =>
         : "bg-red-500";
 
 export default function MenuSection({ initialMenu }: { initialMenu: MenuItem[] }) {
-  const [items] = useState<MenuItem[]>(initialMenu);
+  const { data } = useMenu(initialMenu);
 
-  const categories = useMemo(() => [...new Set(items.map((item) => item.category))], [items]);
+  const categories = useMemo(() => [...new Set(data.map((item) => item.category))], [data]);
 
   let globalIndex = 0;
 
@@ -51,7 +46,7 @@ export default function MenuSection({ initialMenu }: { initialMenu: MenuItem[] }
             {cat}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {items
+            {data
               .filter((item) => item.category === cat)
               .map((item) => {
                 const idx = globalIndex;
