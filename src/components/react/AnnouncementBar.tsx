@@ -3,8 +3,9 @@ import { useAnnouncement } from "../../lib/supabaseContent";
 import { DEFAULT_ANNOUNCEMENT } from "../../lib/defaults";
 
 export default function AnnouncementBar() {
-  const { data } = useAnnouncement(DEFAULT_ANNOUNCEMENT);
+  const { data, loading } = useAnnouncement(DEFAULT_ANNOUNCEMENT);
 
+  if (loading) return null;
   if (!data || data.is_active === false) return null;
 
   return (

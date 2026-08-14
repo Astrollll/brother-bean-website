@@ -27,9 +27,11 @@ function useSupabaseQuery<T>(query: () => Promise<T | null>, initial: T): QueryS
     let active = true;
     query()
       .then((result) => {
-        if (active && result !== null) setData(result);
+        if (active) setData(result as T);
       })
-      .catch(() => {})
+      .catch(() => {
+        if (active) setData(initial);
+      })
       .finally(() => {
         if (active) setLoading(false);
       });
@@ -43,11 +45,12 @@ function useSupabaseQuery<T>(query: () => Promise<T | null>, initial: T): QueryS
 
 export function useAnnouncement(initial: Announcement): QueryState<Announcement> {
   return useSupabaseQuery(async () => {
-    const { data } = await supabase!
+    const { data, error } = await supabase!
       .from("site_content")
       .select("data")
       .eq("key", "announcement")
-      .single();
+      .maybeSingle();
+    if (error) throw error;
     const announcement = data?.data as Announcement | undefined;
     if (!announcement || announcement.is_active === false) return null;
     return announcement;
@@ -56,11 +59,12 @@ export function useAnnouncement(initial: Announcement): QueryState<Announcement>
 
 export function useSiteInfo(initial: SiteInfo): QueryState<SiteInfo> {
   return useSupabaseQuery(async () => {
-    const { data } = await supabase!
+    const { data, error } = await supabase!
       .from("site_content")
       .select("data")
       .eq("key", "site_info")
-      .single();
+      .maybeSingle();
+    if (error) throw error;
     const info = data?.data as SiteInfo | undefined;
     if (!info) return null;
     return { ...initial, ...info };
@@ -69,11 +73,12 @@ export function useSiteInfo(initial: SiteInfo): QueryState<SiteInfo> {
 
 export function usePageCopy(initial: PageCopy): QueryState<PageCopy> {
   return useSupabaseQuery(async () => {
-    const { data } = await supabase!
+    const { data, error } = await supabase!
       .from("site_content")
       .select("data")
       .eq("key", "page_copy")
-      .single();
+      .maybeSingle();
+    if (error) throw error;
     const copy = data?.data as PageCopy | undefined;
     if (!copy) return null;
     return { ...initial, ...copy };
@@ -82,48 +87,48 @@ export function usePageCopy(initial: PageCopy): QueryState<PageCopy> {
 
 export function useMenu(initial: MenuItem[]): QueryState<MenuItem[]> {
   return useSupabaseQuery(async () => {
-    const { data } = await supabase!
+    const { data, error } = await supabase!
       .from("menu_items")
       .select("*")
       .eq("is_active", true)
       .order("display_order");
-    if (!data) return null;
+    if (error) throw error;
     return data as MenuItem[];
   }, initial);
 }
 
 export function useEvents(initial: EventItem[]): QueryState<EventItem[]> {
   return useSupabaseQuery(async () => {
-    const { data } = await supabase!
+    const { data, error } = await supabase!
       .from("events")
       .select("*")
       .eq("is_active", true)
       .order("display_order");
-    if (!data) return null;
+    if (error) throw error;
     return data as EventItem[];
   }, initial);
 }
 
 export function useGallery(initial: GalleryImage[]): QueryState<GalleryImage[]> {
   return useSupabaseQuery(async () => {
-    const { data } = await supabase!
+    const { data, error } = await supabase!
       .from("gallery_images")
       .select("*")
       .eq("is_active", true)
       .order("display_order");
-    if (!data) return null;
+    if (error) throw error;
     return data as GalleryImage[];
   }, initial);
 }
 
 export function useBlogPosts(initial: BlogPost[]): QueryState<BlogPost[]> {
   return useSupabaseQuery(async () => {
-    const { data } = await supabase!
+    const { data, error } = await supabase!
       .from("blog_posts")
       .select("*")
       .eq("is_active", true)
       .order("published_at", { ascending: false });
-    if (!data) return null;
+    if (error) throw error;
     return data as BlogPost[];
   }, initial);
 }

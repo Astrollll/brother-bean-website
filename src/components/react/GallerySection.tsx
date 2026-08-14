@@ -1,9 +1,22 @@
 import React from "react";
 import { useGallery } from "../../lib/supabaseContent";
 import { DEFAULT_GALLERY, type GalleryImage } from "../../lib/defaults";
+import Skeleton from "./Skeleton";
 
 export default function GallerySection({ initialImages }: { initialImages?: GalleryImage[] }) {
-  const { data } = useGallery(initialImages && initialImages.length ? initialImages : DEFAULT_GALLERY);
+  const { data, loading } = useGallery(
+    initialImages && initialImages.length ? initialImages : DEFAULT_GALLERY,
+  );
+
+  if (loading) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <Skeleton key={i} className="aspect-[4/3]" />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -1,6 +1,7 @@
 import React from "react";
 import { useEvents } from "../../lib/supabaseContent";
 import { DEFAULT_EVENTS, type EventItem } from "../../lib/defaults";
+import Skeleton from "./Skeleton";
 
 const dayColors: Record<string, string> = {
   SAT: "from-amber-800/20 to-amber-600/10",
@@ -9,7 +10,19 @@ const dayColors: Record<string, string> = {
 };
 
 export default function EventsSection({ initialEvents }: { initialEvents?: EventItem[] }) {
-  const { data } = useEvents(initialEvents && initialEvents.length ? initialEvents : DEFAULT_EVENTS);
+  const { data, loading } = useEvents(
+    initialEvents && initialEvents.length ? initialEvents : DEFAULT_EVENTS,
+  );
+
+  if (loading) {
+    return (
+      <div className="max-w-3xl mx-auto space-y-6">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Skeleton key={i} className="h-32 rounded-2xl" />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">

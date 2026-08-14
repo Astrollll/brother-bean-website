@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { useMenu } from "../../lib/supabaseContent";
 import type { MenuItem } from "../../lib/defaults";
+import Skeleton from "./Skeleton";
 
 const categoryColors: Record<string, string> = {
   Coffee: "from-amber-800/20 to-amber-600/10 border-amber-800/20",
@@ -19,11 +20,33 @@ const dotColor = (category: string) =>
         : "bg-red-500";
 
 export default function MenuSection({ initialMenu }: { initialMenu: MenuItem[] }) {
-  const { data } = useMenu(initialMenu);
+  const { data, loading } = useMenu(initialMenu);
 
   const categories = useMemo(() => [...new Set(data.map((item) => item.category))], [data]);
 
   let globalIndex = 0;
+
+  if (loading) {
+    return (
+      <>
+        <div className="flex flex-wrap gap-3 justify-center mb-14">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Skeleton key={i} className="h-10 w-32 rounded-full" />
+          ))}
+        </div>
+        {Array.from({ length: 2 }).map((_, r) => (
+          <div key={r} className="mb-14">
+            <Skeleton className="h-6 w-48 mb-6" />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <Skeleton key={i} className="h-44 rounded-2xl" />
+              ))}
+            </div>
+          </div>
+        ))}
+      </>
+    );
+  }
 
   return (
     <>

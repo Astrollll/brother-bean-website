@@ -3,6 +3,7 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { useBlogPosts } from "../../lib/supabaseContent";
 import { DEFAULT_BLOG_POSTS, type BlogPost } from "../../lib/defaults";
+import Skeleton from "./Skeleton";
 
 function formatDate(iso?: string | null): string {
   if (!iso) return "";
@@ -12,7 +13,7 @@ function formatDate(iso?: string | null): string {
 }
 
 export default function BlogApp() {
-  const { data } = useBlogPosts(DEFAULT_BLOG_POSTS);
+  const { data, loading } = useBlogPosts(DEFAULT_BLOG_POSTS);
   const [selected, setSelected] = useState<BlogPost | null>(null);
 
   const posts = useMemo(
@@ -25,6 +26,16 @@ export default function BlogApp() {
     const raw = marked.parse(selected.body_markdown || "", { async: false }) as string;
     return DOMPurify.sanitize(raw);
   }, [selected]);
+
+  if (loading) {
+    return (
+      <div className="max-w-3xl mx-auto space-y-6">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Skeleton key={i} className="h-28 rounded-2xl" />
+        ))}
+      </div>
+    );
+  }
 
   if (selected) {
     return (

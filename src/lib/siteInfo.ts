@@ -46,17 +46,23 @@ export async function applySiteContent(rows: SFData): Promise<void> {
 export async function hydrateSiteContent(): Promise<void> {
   if (!supabase) return;
 
-  const { data } = await supabase
-    .from("site_content")
-    .select("key,data");
+  const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-sf]"));
+  if (!elements.length) return;
+  elements.forEach((el) => el.classList.add("sf-loading"));
 
-  if (!data || !data.length) return;
+  try {
+    const { data } = await supabase.from("site_content").select("key,data");
 
-  const rows: SFData = {};
-  for (const row of data) {
-    rows[row.key as keyof SFData] = row.data;
+    if (!data || !data.length) return;
+
+    const rows: SFData = {};
+    for (const row of data) {
+      rows[row.key as keyof SFData] = row.data;
+    }
+    await applySiteContent(rows);
+  } finally {
+    elements.forEach((el) => el.classList.remove("sf-loading"));
   }
-  await applySiteContent(rows);
 }
 
 export { DEFAULT_SITE_INFO };

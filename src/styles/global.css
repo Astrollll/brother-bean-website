@@ -267,6 +267,28 @@
     transform: translateY(30px) rotateX(-40deg);
     animation: textReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
+
+  .skeleton {
+    background: linear-gradient(90deg, #efe6d8 0%, #faf6ef 40%, #efe6d8 80%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.6s ease-in-out infinite;
+  }
+
+  [data-sf] {
+    transition: opacity 0.4s ease;
+  }
+  [data-sf].sf-loading {
+    opacity: 0;
+  }
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 @layer utilities {
